@@ -1,21 +1,54 @@
 /// <reference types="cypress" />
 
+const perfil = require('../fixtures/perfil.json')
+const checkout = require('../fixtures/checkout.json');
+const faker = require('faker');
+import CheckoutPage from '../support/page_objects/checkout.page'
+
 context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
-    /*  Como cliente 
-        Quero acessar a Loja EBAC 
-        Para fazer um pedido de 4 produtos 
-        Fazendo a escolha dos produtos
-        Adicionando ao carrinho
-        Preenchendo todas opções no checkout
-        E validando minha compra ao final */
 
     beforeEach(() => {
         cy.visit('/')
+        
     });
 
     it('Deve fazer um pedido na loja Ebac Shop de ponta a ponta', () => {
-        //TODO 
+             
+
+        cy.addProduto1()
+        cy.addProduto2()
+        cy.addProduto3()
+        cy.addProduto4()
+        cy.get('#cart > .dropdown-toggle').click()
+        cy.get('#cart > .dropdown-menu > .widget_shopping_cart_content > .mini_cart_content > .mini_cart_inner > .mcart-border > .buttons > .view-cart').click()
+        cy.get('.checkout-button').click()
+        CheckoutPage.criandoCheckout('Talisa', 'Silva', 'Brazil', 'Rua General Osório', 'Santo André', 'São Paulo', '09190440', '11977936600', faker.internet.email(), 'Tata2014*')
+        cy.get('.woocommerce-notice').should('contain', 'Obrigado. Seu pedido foi recebido.')
+      
     });
+        
+              
+        });
+       
+        
 
 
-})
+
+
+
+   
+
+        
+    
+        
+        
+        
+
+        
+        
+
+
+
+
+
+
