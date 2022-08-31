@@ -15,10 +15,7 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
     it('Deve fazer um pedido na loja Ebac Shop de ponta a ponta', () => {
              
 
-        cy.addProduto1()
-        cy.addProduto2()
-        cy.addProduto3()
-        cy.addProduto4()
+        cy.addProdutos(5)
         cy.get('#cart > .dropdown-toggle').click()
         cy.get('#cart > .dropdown-menu > .widget_shopping_cart_content > .mini_cart_content > .mini_cart_inner > .mcart-border > .buttons > .view-cart').click()
         cy.get('.checkout-button').click()
