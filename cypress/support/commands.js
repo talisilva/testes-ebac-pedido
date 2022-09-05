@@ -33,41 +33,15 @@ Cypress.Commands.add('login', (usuario, senha) => {
 });
 
 
-Cypress.Commands.add('addProdutos', (quantidade) => {
-    //Jaqueta
-    cy.get('#primary-menu > .menu-item-629 > a').click()
-    cy.get(':nth-child(7) > .page-numbers').click()
-    cy.contains('Taurus Elements Shell').click()
-    cy.get('.button-variable-item-XS').click()
-    cy.get('.button-variable-item-Blue').click()
+Cypress.Commands.add('addProdutos', (produto, tamanho, cor, quantidade) => {
+    
+    cy.get('#primary-menu > .menu-item-629 > a').click
+    cy.contains(produto).click()
+    cy.get('.button-variable-item-' + tamanho).click()
+    cy.get('.button-variable-item-' + cor).click()
     cy.get('.input-text').clear().type(quantidade)
     cy.get('.single_add_to_cart_button').click()
-    cy.get('.woocommerce-message').should('contain', quantidade,'“Taurus Elements Shell” foi adicionado no seu carrinho.'),
-    //Jaqueta
-    cy.get('#primary-menu > .menu-item-629 > a').click()
-    cy.get(':nth-child(3) > .page-numbers').click()
-    cy.contains('Circe Hooded Ice Fleece').click()
-    cy.get('.button-variable-item-XS').click()
-    cy.get('.button-variable-item-Gray').click()
-    cy.get('.input-text').clear().type(quantidade)
-    cy.get('.single_add_to_cart_button').click()
-    cy.get('.woocommerce-message').should('contain', quantidade, '“Circe Hooded Ice Fleece” foi adicionado no seu carrinho.')
-    //Calça
-    cy.get('#primary-menu > .menu-item-629 > a').click()
-    cy.get('.next').click()
-    cy.contains('Caesar Warm-Up Pant').click()
-    cy.get('.button-variable-item-34').click()
-    cy.get('.button-variable-item-Gray').click()
-    cy.get('.input-text').clear().type(quantidade)
-    cy.get('.single_add_to_cart_button').click()
-    cy.get('.woocommerce-message').should('contain', quantidade, '“Caesar Warm-Up Pant” foi adicionado no seu carrinho.')
-    //Camiseta
-    cy.get('#primary-menu > .menu-item-629 > a').click()
-    cy.get(':nth-child(3) > .page-numbers').click()
-    cy.contains('Cassius Sparring Tank').click()
-    cy.get('.button-variable-item-M').click()
-    cy.get('.input-text').clear().type(quantidade)
-    cy.get(':nth-child(2) > .value > .variable-items-wrapper > .variable-item').click()
-    cy.get('.single_add_to_cart_button').click()
-    cy.get('.woocommerce-message').should('contain', quantidade, '“Cassius Sparring Tank” foi adicionado no seu carrinho.')
-});   
+    cy.get('.woocommerce-message').should('contain', produto, cor, tamanho, quantidade)
+  
+   
+  });   
